@@ -11,7 +11,7 @@ doc:
 deploy:
 	@docker rm -f /$(APP_NAME);echo 1;
 	@docker run -i --rm -d --name $(APP_NAME) \
-		-v "${PWD}/functionAsAService.yml:/home/functionAsAService.yml" \
+		-v "C:\Users\Milo LUSSIGNY\ModelesDeServiceCloud-main\ModelesDeServiceCloud-main\FAAS\deploy/functionAsAService.yml:/home/functionAsAService.yml" \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		--env-file=.env \
 	docker.io/maissacrement/ansibledind:latest

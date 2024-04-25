@@ -1,5 +1,5 @@
 #!make
-APP_NAME=vm_deployer
+APP_NAME=faas_deployer
 
 env ?= .env
 -include $(env)
@@ -11,11 +11,11 @@ doc:
 deploy:
 	@docker rm -f /$(APP_NAME);echo 1;
 	@docker run -i --rm -d --name $(APP_NAME) \
-		-v "${PWD}/deploy.yml:/home/deploy.yml" \
+		-v "C:\Users\Milo LUSSIGNY\ModelesDeServiceCloud-main\ModelesDeServiceCloud-main\FAAS\deploy/functionAsAService.yml:/home/functionAsAService.yml" \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		--env-file=.env \
 	docker.io/maissacrement/ansibledind:latest
 
-deploy_iaas: deploy
-	@docker exec -it $(APP_NAME) /bin/bash -c "ansible-playbook /home/deploy.yml"
+deploy_fass: deploy # APPEL DEPLOY
+	@docker exec -it $(APP_NAME) /bin/bash -c "ansible-playbook /home/functionAsAService.yml"
 	@docker rm -f /$(APP_NAME);echo 1;

@@ -2,7 +2,7 @@
   vars:
     resource_group: myResourceGroup
     location: eastus 
-    instancename: myInstance
+    instancename: test123
     image: mongo:latest
   tasks:
     - name: Login to azure
@@ -24,4 +24,4 @@
 
     - name: Créez un conteneur nginx dans un groupe de conteneurs avec 1 coeur et 1 Go de mémoire.
       shell: |
-        az container create {{image}} --cpu 1 --memory 1
+        az container create --resource-group {{ resource_group }} --name {{ instancename }} --image {{ image }} --cpu 1 --memory 1
